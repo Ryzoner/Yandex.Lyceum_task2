@@ -3,6 +3,7 @@ from random import randint
 from PyQt5.QtGui import QPainter, QColor, QPen
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton
 from PyQt5 import uic
+from random import choice
 
 SCREEN_SIZE = [500, 500]
 
@@ -13,6 +14,8 @@ class MyWidget(QWidget):
         uic.loadUi('UI.ui', self)
         self.button.clicked.connect(self.paint)
         self.do_paint = False
+        self.colors = ['Red', 'Orange', 'Yellow', 'Green', 'Cyan',
+                    'Blue', 'Magenta', 'Purple', 'Brown', 'Black']
 
     def paintEvent(self, event):
         if self.do_paint:
@@ -25,7 +28,7 @@ class MyWidget(QWidget):
         d = randint(3, 200)
         heigh, width = randint(0, 300 - d), randint(0, 300 - d)
 
-        qp.setPen(QPen(QColor(255, 255, 0), 4))
+        qp.setPen(QPen(QColor(choice(self.colors)), 4))
 
         qp.drawEllipse(heigh, width, d, d)
 
